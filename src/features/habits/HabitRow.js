@@ -1,23 +1,25 @@
 import React from "react";
-import { removeHabit } from "./habitsSlice"
-import { useDispatch } from 'react-redux'
+import { removeHabit } from "./habitsSlice";
+import { useDispatch } from "react-redux";
 import styles from "./Habit.module.css";
+import DayItem from "./DayItem";
 
-
-function HabitRow ( { habit } ) {
-  const dispatch = useDispatch()
+function HabitRow({ habit }) {
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(removeHabit(habit.id))
+    dispatch(removeHabit(habit.id));
+  };
+
+  function renderDays() {
+    return habit.days.map( ( day ) => <DayItem habit={habit} key={day.name} day={day} />);
   }
 
   return (
     <div className={styles.row}>
       <h1>{habit.title}</h1>
-      <button className={styles.button}>complete habit</button>
-      <button className={styles.button} onClick={handleDelete}>
-        remove habit
-      </button>
+      <button onClick={handleDelete}>remove habit</button>
+      <div>{renderDays()}</div>
     </div>
   );
 }
