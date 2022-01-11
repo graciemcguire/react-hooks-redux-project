@@ -12,7 +12,7 @@ function HabitRow({ habit }) {
   };
 
   function renderDays() {
-    return habit.days.map( ( day ) => <DayItem habit={habit} key={day.name} day={day} />);
+    return habit.days.map( ( day ) => <DayItem habitId={habit.id} key={day.name} day={day} />);
   }
 
   return (

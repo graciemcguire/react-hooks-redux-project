@@ -12,10 +12,10 @@ export const removeHabit = (id) => {
   };
 };
 
-export const completeHabit = (id) => {
+export const completeHabit = (habit) => {
   return {
     type: "habits/complete",
-    payload: id,
+    payload: habit,
   };
 };
 
@@ -30,10 +30,10 @@ export default function habitsReducer ( state = initialState, action ) {
       return [ ...state, payload ]
     case 'habits/remove':
       return state.filter( (habit) => habit.id !== payload )
-    // case 'habits/complete':
-    //   return state.map( (habit) => {
-    //     if(habit.id === payload) return { ...habit, complete: true }
-    //   })
+    case 'habits/complete':
+      return state.map( (habit) => {
+        // if(habit.id === payload.id) return { ...habit, habit.day: true }
+      })
   default:
     return state;
   }
