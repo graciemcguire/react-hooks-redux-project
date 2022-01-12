@@ -1,42 +1,68 @@
-export const addHabit = (habit) => {
-  return {
-    type: "habits/add",
-    payload: habit,
-  };
-};
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const removeHabit = (id) => {
-  return {
-    type: "habits/remove",
-    payload: id,
-  };
-};
+// save our base URL
+const baseUrl = "http://localhost:3000/habits";
 
-export const completeHabit = (habit) => {
-  return {
-    type: "habits/complete",
-    payload: habit,
-  };
-};
+export const fetchHabits = createAsyncThunk( "habits/fetchHabits", () => {
+  // return a Promise containing the data we want
+  return fetch(baseUrl)
+    .then((response) => response.json())
+    .then((data) => data);
+});
 
+export const postHabit = createAsyncThunk( "habits/addHabits", ( habit ) => {
+  // debugger
+  fetch(baseUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: habit.id,
+      title: habit.title,
+      days: habit.days
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => data);
+} );
 
-// Reducer
-const initialState = []
+const habitsSlice = createSlice({
+  name: "habits",
+  initialState: {
+    entities: [], // array of habits
+    status: "idle", // loading state
+  },
+  reducers: {
+    addHabit(state, action) {
+      // using createSlice lets us mutate state!
+      // state.entities.push(action.payload);
+      postHabit(action.payload)
+      state.entities.push(action.payload)
+    },
+    removeHabit(state, action) {
+      state.entities.filter((habit) => habit.id !== action.payload);
+    },
+    updateHabit(state, action) {
+      const habit = state.entities.find(
+        (habit) => habit.id === action.payload.id
+      );
+      habit.title = action.payload.title;
+    },
+  },
+  extraReducers: {
+    // handle async actions: pending, fulfilled, rejected (for errors)
+    [fetchHabits.pending](state) {
+      state.status = "loading";
+    },
+    [fetchHabits.fulfilled](state, action) {
+      state.entities = action.payload;
+      state.status = "idle";
+    },
+  },
+});
 
-export default function habitsReducer ( state = initialState, action ) {
-  const { payload, type } = action
-  switch ( type ) {
-    case 'habits/add':
-      return [ ...state, payload ]
-    case 'habits/remove':
-      return state.filter( (habit) => habit.id !== payload )
-    case 'habits/complete':
-      return state.map( (habit) => {
-        // if(habit.id === payload.id) return { ...habit, habit.day: true }
-      })
-  default:
-    return state;
-  }
-}
+export const { addHabit, removeHabit, updateHabit } = habitsSlice.actions;
 
-// export const selectHabits = (state) => state.habits.value;
+export default habitsSlice.reducer;
+

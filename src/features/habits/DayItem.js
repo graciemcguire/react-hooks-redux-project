@@ -8,7 +8,7 @@ export default function DayItem ( { day } ) {
     completed: false
   } )
   
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   function handleChange ( event ) {
     console.log( day.name, event.target.checked );
@@ -17,7 +17,7 @@ export default function DayItem ( { day } ) {
       setFormData({
         completed: event.target.checked,
       } );
-    // dispatch(complete)
+    // dispatch(completed)
     }
   
   return (
@@ -29,7 +29,7 @@ export default function DayItem ( { day } ) {
         value={ day.completed }
         onChange={ handleChange }
       ></input>
-      <label for={day.name}> {day.name}</label>
+      <label name={day.name}> {day.name}</label>
     </form>
   );
 }
