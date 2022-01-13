@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import styles from "./Habit.module.css";
 
-export default function DayItem ( { day } ) {
+export default function DayItem ( { habitId, day } ) {
   
   const [ formData, setFormData ] = useState( {
     completed: false
