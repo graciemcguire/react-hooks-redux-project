@@ -35,7 +35,7 @@ export function HabitForm() {
     };
 
     dispatch(addHabit(habit));
-    
+
     setFormData({
       title: "",
     });
@@ -43,9 +43,9 @@ export function HabitForm() {
 
   return (
     <div>
-      <h1>habit form</h1>
+      <h1>Weekly Habit Tracker</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="content">new habit</label>
+        <label htmlFor="content">create a new habit</label>
         <div>
           <textarea
             className={styles.textbox}

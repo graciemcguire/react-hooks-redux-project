@@ -3,29 +3,24 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // save our base URL
 const baseUrl = "http://localhost:3000/habits";
 
-export const fetchHabits = createAsyncThunk( "habits/fetchHabits", () => {
+export const fetchHabits = createAsyncThunk("habits/fetchHabits", () => {
   // return a Promise containing the data we want
   return fetch(baseUrl)
     .then((response) => response.json())
     .then((data) => data);
 });
 
-export const postHabit = createAsyncThunk( "habits/addHabits", ( habit ) => {
-  // debugger
-  fetch(baseUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: habit.id,
-      title: habit.title,
-      days: habit.days
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => data);
-} );
+// export const addHabit = createAsyncThunk("habits/addHabit", (habit) => {
+//   return fetch(baseUrl, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(habit),
+//   })
+//     .then((r) => r.json())
+//     .then((data) => console.log(data));
+// });
 
 const habitsSlice = createSlice({
   name: "habits",
@@ -35,19 +30,29 @@ const habitsSlice = createSlice({
   },
   reducers: {
     addHabit(state, action) {
-      // using createSlice lets us mutate state!
-      // state.entities.push(action.payload);
-      postHabit(action.payload)
-      state.entities.push(action.payload)
+      fetch(baseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(action.payload),
+      })
+        .then((r) => r.json())
+        .then(state.entities.push(action.payload));
     },
     removeHabit(state, action) {
-      state.entities.filter((habit) => habit.id !== action.payload);
-    },
-    updateHabit(state, action) {
-      const habit = state.entities.find(
-        (habit) => habit.id === action.payload.id
+      const index = state.entities.findIndex(
+        (habit) => habit === action.payload
       );
-      habit.title = action.payload.title;
+
+      fetch(`${baseUrl}/${action.payload}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((r) => r.json())
+        .then(state.entities.splice(index, 1));
     },
   },
   extraReducers: {
@@ -62,7 +67,6 @@ const habitsSlice = createSlice({
   },
 });
 
-export const { addHabit, removeHabit, updateHabit } = habitsSlice.actions;
+export const { addHabit, removeHabit } = habitsSlice.actions;
 
 export default habitsSlice.reducer;
-

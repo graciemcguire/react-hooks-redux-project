@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import DayItem from "./DayItem";
 
 function HabitRow ( { habit } ) {
-  // debugger
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -19,7 +18,7 @@ function HabitRow ( { habit } ) {
 
   return (
     <div>
-      <h1>{habit.title}</h1>
+      <h3>{habit.title}</h3>
       <button onClick={handleDelete}>remove habit</button>
       <div>{renderDays()}</div>
     </div>
