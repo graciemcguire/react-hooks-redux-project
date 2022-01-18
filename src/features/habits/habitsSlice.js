@@ -54,6 +54,9 @@ const habitsSlice = createSlice({
         .then((r) => r.json())
         .then(state.entities.splice(index, 1));
     },
+    // patchHabit ( state, action ) {
+      
+    // },
   },
   extraReducers: {
     // handle async actions: pending, fulfilled, rejected (for errors)

@@ -20,7 +20,6 @@ export function Habits() {
 
   return (
     <section>
-      <h2>My Habits</h2>
       <div>{renderHabitRows()}</div>
     </section>
   );

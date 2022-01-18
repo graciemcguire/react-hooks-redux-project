@@ -8,28 +8,24 @@ export default function DayItem ( { habitId, day } ) {
     completed: false
   } )
   
-  // const dispatch = useDispatch();
-
   function handleChange ( event ) {
-    console.log( day.name, event.target.checked );
+    console.log( day[0], event.target.checked );
     console.log(formData);
-    // debugger
       setFormData({
         completed: event.target.checked,
       } );
-    // dispatch(completed)
     }
   
   return (
     <form>
       <input
         type="checkbox"
-        id={day.name}
-        name={day.name}
-        value={ day.completed }
-        onChange={ handleChange }
+        id={day[0]}
+        name={day[0]}
+        value={day.completed}
+        onChange={handleChange}
       ></input>
-      <label name={day.name}> {day.name}</label>
+      <label name={day[0]}> {day[0]}</label>
     </form>
   );
 }

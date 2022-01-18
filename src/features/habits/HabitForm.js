@@ -18,20 +18,20 @@ export function HabitForm() {
     });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit ( event ) {
+    event.preventDefault()
     const habit = {
       ...formData,
       id: uuid(),
-      days: [
-        { name: "sunday", completed: false },
-        { name: "monday", completed: false },
-        { name: "tuesday", completed: false },
-        { name: "wednesday", completed: false },
-        { name: "thursday", completed: false },
-        { name: "friday", completed: false },
-        { name: "saturday", completed: false },
-      ],
+      days: {
+        sunday: false,
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        saturday: false,
+      },
     };
 
     dispatch(addHabit(habit));
@@ -45,19 +45,19 @@ export function HabitForm() {
     <div>
       <h1>Weekly Habit Tracker</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="content">create a new habit</label>
+        
         <div>
           <textarea
-            className={styles.textbox}
             id="title"
             name="title"
+            placeholder="Add a new habit..."
             value={formData.title}
             onChange={(e) => handleChange(e)}
           />
         </div>
         <div>
           <button type="submit" className={styles.button}>
-            Add
+            Add Habit
           </button>
         </div>
       </form>

@@ -3,104 +3,28 @@
     {
       "id": "1",
       "title": "code everyday",
-      "days": [
-        {
-          "name": "sunday",
-          "completed": false
-        },
-        {
-          "name": "monday",
-          "completed": false
-        },
-        {
-          "name": "tuesday",
-          "completed": false
-        },
-        {
-          "name": "wednesday",
-          "completed": false
-        },
-        {
-          "name": "thursday",
-          "completed": false
-        },
-        {
-          "name": "friday",
-          "completed": false
-        },
-        {
-          "name": "saturday",
-          "completed": false
-        }
-      ]
+      "days": {
+        "sunday": false,
+        "monday": false,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false
+      }
     },
     {
       "id": "2",
       "title": "read for 30 minutes",
-      "days": [
-        {
-          "name": "sunday",
-          "completed": false
-        },
-        {
-          "name": "monday",
-          "completed": false
-        },
-        {
-          "name": "tuesday",
-          "completed": false
-        },
-        {
-          "name": "wednesday",
-          "completed": false
-        },
-        {
-          "name": "thursday",
-          "completed": false
-        },
-        {
-          "name": "friday",
-          "completed": false
-        },
-        {
-          "name": "saturday",
-          "completed": false
-        }
-      ]
-    },
-    {
-      "title": "g",
-      "id": "60f207f4-3cdb-4b6d-a7a5-b635af83e22f",
-      "days": [
-        {
-          "name": "sunday",
-          "completed": false
-        },
-        {
-          "name": "monday",
-          "completed": false
-        },
-        {
-          "name": "tuesday",
-          "completed": false
-        },
-        {
-          "name": "wednesday",
-          "completed": false
-        },
-        {
-          "name": "thursday",
-          "completed": false
-        },
-        {
-          "name": "friday",
-          "completed": false
-        },
-        {
-          "name": "saturday",
-          "completed": false
-        }
-      ]
+      "days": {
+        "sunday": false,
+        "monday": false,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false
+      }
     }
   ]
 }
