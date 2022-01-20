@@ -1,8 +1,7 @@
 # [Instructors Only] React-Redux Project Example
 
 This repository contains an example of a completed project that meets the
-requirements for the [React-Redux Project
-Guidelines][project guidelines]:
+requirements for the [React-Redux Project Guidelines][project guidelines]:
 
 - https://github.com/learn-co-curriculum/react-hooks-redux-project-guidelines
 
@@ -17,7 +16,7 @@ $ npm install
 Run the server:
 
 ```console
-$ json-server --watch db.json
+$ npm run server
 ```
 
 View the project in the browser
