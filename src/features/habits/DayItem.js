@@ -1,31 +1,25 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-// import styles from "./Habit.module.css";
+import React, { useState } from "react"
 
-export default function DayItem ( { habitId, day } ) {
-  
-  const [ formData, setFormData ] = useState( {
-    completed: false
-  } )
-  
+export default function DayItem({ day, updateDay }) {
+  const name = day[0];
+  const toggle = day[1];
+
   function handleChange ( event ) {
-    console.log( day[0], event.target.checked );
-    console.log(formData);
-      setFormData({
-        completed: event.target.checked,
-      } );
-    }
-  
+    const checked = event.target.checked
+    console.log( 'in day', name, checked );
+    updateDay(name)
+  }
+
   return (
     <form>
       <input
         type="checkbox"
-        id={day[0]}
-        name={day[0]}
-        value={day.completed}
+        id={name}
+        name={name}
+        value={toggle}
         onChange={handleChange}
       ></input>
-      <label name={day[0]}> {day[0]}</label>
+      <label name={day}> {day}</label>
     </form>
   );
 }
