@@ -1,6 +1,6 @@
 import React from "react";
-import { removeHabit } from "./habitsSlice";
 import { useDispatch } from "react-redux";
+import { removeHabit } from "./habitsSlice";
 import DayItem from "./DayItem";
 
 function HabitRow({ habit }) {

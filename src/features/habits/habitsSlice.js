@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // save our base URL
-const baseUrl = "http://localhost:3000/habits";
+const baseUrl = "http://localhost:4000/habits";
 
 export const fetchHabits = createAsyncThunk("habits/fetchHabits", () => {
   // return a Promise containing the data we want

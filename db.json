@@ -18,8 +18,8 @@
       "title": "read for 30 minutes",
       "days": {
         "sunday": false,
-        "monday": false,
-        "tuesday": false,
+        "monday": true,
+        "tuesday": true,
         "wednesday": false,
         "thursday": false,
         "friday": false,

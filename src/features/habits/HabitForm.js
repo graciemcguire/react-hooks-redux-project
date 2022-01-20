@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { addHabit } from "./habitsSlice";
 import { useDispatch } from "react-redux";
+import { addHabit } from "./habitsSlice";
 import styles from "./Habit.module.css";
 
 export function HabitForm() {
@@ -17,8 +17,8 @@ export function HabitForm() {
     });
   }
 
-  function handleSubmit ( event ) {
-    event.preventDefault()
+  function handleSubmit(event) {
+    event.preventDefault();
     const habit = {
       ...formData,
       days: {
@@ -43,7 +43,6 @@ export function HabitForm() {
     <div>
       <h1>Weekly Habit Tracker</h1>
       <form onSubmit={handleSubmit}>
-        
         <div>
           <textarea
             id="title"
