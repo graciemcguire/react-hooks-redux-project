@@ -1,25 +1,29 @@
-import React, { useState } from "react"
+import React from "react";
+import { patchHabit } from "./habitsSlice";
+import { useDispatch } from "react-redux";
 
-export default function DayItem({ day, updateDay }) {
-  const name = day[0];
-  const toggle = day[1];
+export default function DayItem({ day, habit }) {
+  const dispatch = useDispatch();
 
   function handleChange ( event ) {
-    const checked = event.target.checked
-    console.log( 'in day', name, checked );
-    updateDay(name)
+    const updateHabit = {
+      ...habit,
+      days: { ...habit.days, [event.target.name]: event.target.checked },
+    };
+
+    dispatch(patchHabit(updateHabit));
   }
 
   return (
     <form>
       <input
         type="checkbox"
-        id={name}
-        name={name}
-        value={toggle}
+        id={day[0]}
+        name={ day[ 0 ] }
+        checked={day[1]}
         onChange={handleChange}
       ></input>
-      <label name={day}> {day}</label>
+      <label>{day}</label>
     </form>
   );
 }

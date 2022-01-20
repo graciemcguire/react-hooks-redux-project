@@ -10,53 +10,41 @@ export const fetchHabits = createAsyncThunk("habits/fetchHabits", () => {
     .then((data) => data);
 });
 
-// export const addHabit = createAsyncThunk("habits/addHabit", (habit) => {
-//   return fetch(baseUrl, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(habit),
-//   })
-//     .then((r) => r.json())
-//     .then((data) => console.log(data));
-// });
+export const addHabit = createAsyncThunk("habits/addHabit", (habit) => {
+  // return a Promise containing the data we want
+  return fetch(baseUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(habit),
+  }).then((r) => r.json());
+});
+
+export const removeHabit = createAsyncThunk("habits/removeHabit", (habitId) => {
+  return fetch(`${baseUrl}/${habitId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((r) => r.json());
+});
+
+export const patchHabit = createAsyncThunk("habits/patchHabit", (habit) => {
+  return fetch(`${baseUrl}/${habit.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(habit),
+  }).then((r) => r.json());
+});
 
 const habitsSlice = createSlice({
   name: "habits",
   initialState: {
     entities: [], // array of habits
     status: "idle", // loading state
-  },
-  reducers: {
-    addHabit(state, action) {
-      fetch(baseUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(action.payload),
-      })
-        .then((r) => r.json())
-        .then(state.entities.push(action.payload));
-    },
-    removeHabit(state, action) {
-      const index = state.entities.findIndex(
-        (habit) => habit === action.payload
-      );
-
-      fetch(`${baseUrl}/${action.payload}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((r) => r.json())
-        .then(state.entities.splice(index, 1));
-    },
-    // patchHabit ( state, action ) {
-      
-    // },
   },
   extraReducers: {
     // handle async actions: pending, fulfilled, rejected (for errors)
@@ -67,9 +55,23 @@ const habitsSlice = createSlice({
       state.entities = action.payload;
       state.status = "idle";
     },
+    [addHabit.fulfilled](state, action) {
+      state.entities.push(action.payload);
+    },
+    [removeHabit.fulfilled](state, action) {
+      const index = state.entities.findIndex(
+        (habit) => habit.id === action.payload
+      );
+      state.entities.splice(index, 1);
+    },
+    [patchHabit.fulfilled](state, action) {
+      const updatedHabits = state.entities.map((habit) => {
+        if (habit.id === action.payload.id) return action.payload;
+        return habit;
+      });
+      state.entities = updatedHabits;
+    },
   },
 });
-
-export const { addHabit, removeHabit } = habitsSlice.actions;
 
 export default habitsSlice.reducer;

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { v4 as uuid } from "uuid";
 import { addHabit } from "./habitsSlice";
 import { useDispatch } from "react-redux";
 import styles from "./Habit.module.css";
@@ -22,7 +21,6 @@ export function HabitForm() {
     event.preventDefault()
     const habit = {
       ...formData,
-      id: uuid(),
       days: {
         sunday: false,
         monday: false,

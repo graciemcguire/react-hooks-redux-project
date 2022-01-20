@@ -26,7 +26,8 @@ View the project in the browser
 $ npm start
 ```
 
-This project does not include code for any of the bonus deliverables, and only has the minimum code required to complete the user stories.
+This project does not include code for any of the bonus deliverables, and only
+has the minimum code required to complete the user stories.
 
 [project guidelines]:
   https://github.com/learn-co-curriculum/react-hooks-redux-project-guidelines
