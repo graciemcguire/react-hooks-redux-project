@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchHabits } from "./habitsSlice";
-// import HabitForm from "./HabitForm";
 import HabitRow from "./HabitRow";
-// import styles from "./Habit.module.css";
 
 export function Habits() {
   const habits = useSelector((state) => state.habits.entities);

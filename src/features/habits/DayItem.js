@@ -1,11 +1,11 @@
 import React from "react";
-import { patchHabit } from "./habitsSlice";
 import { useDispatch } from "react-redux";
+import { patchHabit } from "./habitsSlice";
 
 export default function DayItem({ day, habit }) {
   const dispatch = useDispatch();
 
-  function handleChange ( event ) {
+  function handleChange(event) {
     const updateHabit = {
       ...habit,
       days: { ...habit.days, [event.target.name]: event.target.checked },
@@ -19,7 +19,7 @@ export default function DayItem({ day, habit }) {
       <input
         type="checkbox"
         id={day[0]}
-        name={ day[ 0 ] }
+        name={day[0]}
         checked={day[1]}
         onChange={handleChange}
       ></input>
